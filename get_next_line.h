@@ -6,7 +6,7 @@
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:37:09 by skrairab          #+#    #+#             */
-/*   Updated: 2022/06/17 02:19:21 by skrairab         ###   ########.fr       */
+/*   Updated: 2022/06/30 22:01:23 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@
 #include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #ifndef	BUFFER_SIZE
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 1
 #endif
 
 typedef struct s_stash
 {
-	char	*p;
 	char	*buffer;
-	int	start;
-//	int	nline;
+	char	*p;
+//	int	start;
+	char	*nline;
 }			t_stash;
 
 
