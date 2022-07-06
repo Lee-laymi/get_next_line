@@ -6,7 +6,7 @@
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:36:46 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/05 00:08:28 by skrairab         ###   ########.fr       */
+/*   Updated: 2022/07/05 20:52:45 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (str == NULL)
 		return (NULL);
 	i = 0;
-	while (i < ft_strlen(s1, 1))
+	while (s1[i])
 	{
 		str[i] = s1[i];
 		i++;
 	}
 	j = 0;
-	while (j < ft_strlen(s2, 1))
+	while (s2[j])
 	{
 		str[i + j] = s2[j];
 		j++;
@@ -91,11 +91,9 @@ char	*ft_a(char *s)
 
 	i = 0;
 	j = 0;
-	if (s == NULL)
-		return (NULL);
 	while (s[i] != '\n' && s[i] != '\0')
 		i++;
-	if (s[i] == '\0' || s[i + 1] == '\0')
+	if (s[i] == '\0' || s[i + 1] == '\0' || s == NULL)
 	{
 		free(s);
 		return (NULL);
@@ -113,22 +111,24 @@ char	*ft_a(char *s)
 	return (str);
 }
 
-int	ft_count(char *p)
-{
-	int	i;
+int	ft_count(char *str, int fd)
+{	
+	static t_stash	p[OPEN_MAX];
+	int				i;
 
-	i = 0;
-	while (p[i] != '\n' && p[i] != '\0')
+	i = p[fd].start;
+	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	return (i);
 }
 
 char	*ft_getp(int fd, char *getp)
 {
-	int	readed;
-	int	i;
-	char	*buff;
-	
+	static t_stash	p[OPEN_MAX];	
+	int				readed;
+	int				i;
+	char			*buff;
+
 	if (fd < 0 || BUFFER_SIZE < 0 || read(fd, NULL, 0) < 0)
 		return (NULL);
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
@@ -144,14 +144,14 @@ char	*ft_getp(int fd, char *getp)
 	{
 		buff[readed] = '\0';
 		getp = ft_strjoin(getp, buff);
-		i = ft_count(getp);
+		i = ft_count(getp, fd);
 		if (getp[i] == '\n' || ((readed == 0) && getp[i] == '\0'))
 		{
+			p[fd].start = i;
 			free(buff);
 			return (getp);
 		}
 		readed = read(fd, buff, BUFFER_SIZE);
-	//	printf("getp = %s\n", getp);
 	}
 	free(buff);
 	return (NULL);
@@ -159,18 +159,20 @@ char	*ft_getp(int fd, char *getp)
 
 char	*get_next_line(int fd)
 {
-	int	i;
-	static	t_stash	p[OPEN_MAX];
+	int				i;
+	static t_stash	p[OPEN_MAX];
 
+	p[fd].start = 0;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
 		return (NULL);
 	if (p[fd].p == NULL)
 	{
 		p[fd].p = malloc(sizeof(char));
 		p[fd].p[0] = '\0';
+		p[fd].start = 0;
 	}
-	i = ft_count(p[fd].p);
-	if (p[fd].p[i] == '\n' ||  p[fd].p[i] == '\0')
+	i = ft_count(p[fd].p, p[fd].start);
+	if (p[fd].p[i] == '\n' || p[fd].p[i] == '\0')
 	{
 		p[fd].p = ft_getp(fd, p[fd].p);
 		p[fd].nline = ft_strlcpy(p[fd].nline, p[fd].p);
@@ -186,8 +188,8 @@ char	*get_next_line(int fd)
 	}
 	return (NULL);
 }
-/*
-int	main()
+
+/*int	main()
 {
 	int	fd;
 	int	i;

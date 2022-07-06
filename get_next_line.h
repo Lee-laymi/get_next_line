@@ -6,7 +6,7 @@
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 19:37:09 by skrairab          #+#    #+#             */
-/*   Updated: 2022/06/30 22:01:23 by skrairab         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:29:40 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_stash
 {
 	char	*buffer;
 	char	*p;
-//	int	start;
+	int	start;
 	char	*nline;
 }			t_stash;
 
