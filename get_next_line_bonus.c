@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 23:51:32 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/08 00:14:04 by skrairab         ###   ########.fr       */
+/*   Created: 2022/07/07 22:34:05 by skrairab          #+#    #+#             */
+/*   Updated: 2022/07/08 00:21:47 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_count(char *str, int fd)
 {	
-	static t_stash	p[OPEN_MAX];
+//	static t_stash	p[OPEN_MAX];
 	int			i;
 
-	i = p[fd].start;
+	i = 0;
+//	i = p[fd].start;
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	return (i);
@@ -48,7 +49,8 @@ char	*ft_getp(int fd, char *getp, t_stash p)
 {
 	int		i;
 	char	*buff;
-
+	
+	i = p.start;
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
 	if (!buff)
 		return (NULL);

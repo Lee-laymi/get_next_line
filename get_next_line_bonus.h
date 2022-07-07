@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 19:37:09 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/07 23:54:01 by skrairab         ###   ########.fr       */
+/*   Created: 2022/07/07 21:46:28 by skrairab          #+#    #+#             */
+/*   Updated: 2022/07/08 00:21:49 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -24,7 +24,6 @@ typedef struct s_stash
 	char	*buffer;
 	char	*p;
 	char	*nline;
-	int		fd;
 	int		readed;
 	int		start;
 }			t_stash;
