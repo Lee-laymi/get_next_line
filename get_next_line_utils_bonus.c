@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 18:05:53 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/07 22:44:59 by skrairab         ###   ########.fr       */
+/*   Created: 2022/07/11 20:18:42 by skrairab          #+#    #+#             */
+/*   Updated: 2022/07/11 20:23:32 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s, int mode)
 {

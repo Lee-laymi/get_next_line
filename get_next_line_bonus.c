@@ -5,20 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/07 22:34:05 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/08 00:21:47 by skrairab         ###   ########.fr       */
+/*   Created: 2022/07/11 20:17:05 by skrairab          #+#    #+#             */
+/*   Updated: 2022/07/11 20:22:42 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-int	ft_count(char *str, int fd)
+int	ft_count(char *str, t_stash p)
 {	
-//	static t_stash	p[OPEN_MAX];
-	int			i;
+	int				i;
 
-	i = 0;
-//	i = p[fd].start;
+	i = p.start;
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	return (i);
@@ -49,8 +47,7 @@ char	*ft_getp(int fd, char *getp, t_stash p)
 {
 	int		i;
 	char	*buff;
-	
-	i = p.start;
+
 	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE) + 1);
 	if (!buff)
 		return (NULL);
@@ -61,7 +58,7 @@ char	*ft_getp(int fd, char *getp, t_stash p)
 	{
 		buff[p.readed] = '\0';
 		getp = ft_strjoin(getp, buff);
-		i = ft_count(getp, fd);
+		i = ft_count(getp, p);
 		if (getp[i] == '\n' || ((p.readed == 0) && getp[i] == '\0'))
 		{
 			p.start = i;
@@ -82,7 +79,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0))
 		return (NULL);
 	struct_int(fd, p);
-	i = ft_count(p[fd].p, p[fd].start);
+	i = ft_count(p[fd].p, p[fd]);
 	if (p[fd].p[i] == '\n' || p[fd].p[i] == '\0')
 	{
 		p[fd].p = ft_getp(fd, p[fd].p, p[fd]);

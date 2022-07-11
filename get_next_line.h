@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/21 19:37:09 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/07 23:54:01 by skrairab         ###   ########.fr       */
+/*   Created: 2022/07/11 20:16:12 by skrairab          #+#    #+#             */
+/*   Updated: 2022/07/11 20:22:31 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	ft_strlen(char *s, int mode);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strlcpy(char *dst, char *src);
 char	*ft_a(char *s);
-int		ft_count(char *str, int fd);
+int		ft_count(char *str, t_stash p);
 void	struct_int(int fd, t_stash *p);
 char	*ft_readed(int readed, char *getp, char *buff);
 char	*ft_getp(int fd, char *getp, t_stash p);
