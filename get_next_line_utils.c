@@ -6,7 +6,7 @@
 /*   By: skrairab <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:05:53 by skrairab          #+#    #+#             */
-/*   Updated: 2022/07/11 20:23:22 by skrairab         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:53:55 by skrairab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_strlcpy(char *dst, char *src)
 	dst = (char *)malloc(ft_strlen(src, 2) + 2);
 	if (dst == NULL)
 		return (NULL);
-	while (i < ft_strlen(src, 1) && src[i] != '\n')
+	while (src[i] && src[i] != '\n')
 	{
 		dst[i] = src[i];
 		i++;
@@ -101,7 +101,7 @@ char	*ft_a(char *s)
 	str = (char *)malloc(ft_strlen(s, 1) - i + 1);
 	if (str == NULL)
 		return (NULL);
-	while (j < (ft_strlen(s, 1) - i))
+	while (s[i + j + 1])
 	{
 		str[j] = s[i + j + 1];
 		j++;
